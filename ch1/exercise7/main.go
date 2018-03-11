@@ -15,6 +15,7 @@ func main() {
 			os.Exit(1)
 		}
 		_, cpErr := io.Copy(os.Stdout, resp.Body)
+		resp.Body.Close()
 		if cpErr != nil {
 			fmt.Fprintf(os.Stderr, "fetch: copying %s: %v\n", url, cpErr)
 			os.Exit(1)
