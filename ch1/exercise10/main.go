@@ -15,6 +15,7 @@ func main() {
 	defer file.Close()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "fetchall: %v\n", err)
+		os.Exit(1)
 	}
 	ch := make(chan string)
 	for _, url := range os.Args[1:] {
