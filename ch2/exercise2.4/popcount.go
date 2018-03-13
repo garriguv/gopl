@@ -22,8 +22,8 @@ func PopCount(x uint64) int {
 
 func PopCountShift(x uint64) int {
 	count := 0
-	for i := 0; i < 64; i++ {
-		count += int(x >> uint(i) & 1)
+	for i := uint(0); i < 64; i++ {
+		count += int(x >> i & 1)
 	}
 	return count
 }
