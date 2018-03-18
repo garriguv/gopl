@@ -17,17 +17,15 @@ var (
 	y         = flag.Float64("y", 0, "center y value")
 	xRange    = flag.Float64("xRange", 2, "range for the x value x-range..x+range")
 	yRange    = flag.Float64("yRange", 2, "range for the y value y-range..y+range")
+	width     = flag.Int("width", 1024, "width of the image")
+	height    = flag.Int("height", 1024, "height of the image")
 )
 
 func main() {
 	flag.Parse()
 
-	const (
-		width, height = 1024, 1024
-	)
-
-	img := image.NewRGBA(image.Rect(0, 0, width, height))
-	m := NewMandelbrot(*x, *y, *xRange, *yRange, width, height)
+	img := image.NewRGBA(image.Rect(0, 0, *width, *height))
+	m := NewMandelbrot(*x, *y, *xRange, *yRange, *width, *height)
 	switch *precision {
 	case "complex64":
 		m.SetFunc(mandelbrot64)
