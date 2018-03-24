@@ -20,15 +20,14 @@ func comma(s string) string {
 	}
 
 	var buf bytes.Buffer
-	if n%3 != 0 {
-		buf.WriteString(s[:n%3])
-		buf.WriteByte(',')
-		s = s[n%3:]
-	}
 	for len(s) > 3 {
-		buf.WriteString(s[:3])
+		comma := len(s) % 3
+		if comma == 0 {
+			comma = 3
+		}
+		buf.WriteString(s[:comma])
 		buf.WriteByte(',')
-		s = s[3:]
+		s = s[comma:]
 	}
 	buf.WriteString(s)
 	buf.WriteString(r)
